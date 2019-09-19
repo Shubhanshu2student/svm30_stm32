@@ -54,39 +54,16 @@ air_quality_process ()
   static uint8_t sgp30_uninit_status = 1;
   uint32_t u32_temp, u32_hum;
   static uint8_t one_sec_timer = 0;
-//  static uint16_t ten_min_timer = 0;
   static uint8_t one_sec_flag, soft_reset_flag = 0;
   static uint8_t set_baseLine_flag = 1;
   static uint16_t u1615sectimer = 0;
   one_sec_timer++;
-
-//  if (sensor_card_com_st.sgp30_cmd == 1)
-//  {
-//    set_baseLine_flag = 1;
-//  }
-//  if (sensor_card_com_st.sgp30_cmd == 2)
-//  {
-//    g_baseline_cmd = get_baseline;
-//  }
-
+  
   if (one_sec_timer == 50)
   {
     one_sec_timer = 0;
     one_sec_flag = 1;
-//    ten_min_timer++;
   }
-//  if(ten_min_timer == 600)  //for10mins
-//  {
-//    ten_min_timer = 0;
-//    set_baseLine_flag = 1;
-//    GPIOB->ODR &= ~GPIO_Pin_13;
-//  }
-//  if(soft_reset_flag)
-//  {
-//    i2c_write(SGP30_ADDRESS, sgp30_soft_reset, 2);
-//    soft_reset_flag = 0;
-//    return;
-//  }
   if (!one_sec_flag)
   {
     return;
